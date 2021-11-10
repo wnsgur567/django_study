@@ -1,0 +1,20 @@
+<!-- latest_question_list 는 index() 뷰 함수에서 넘겨주는 파라미터  -->
+{% if latest_question_list %}
+<ul>
+    {% for question in latest_question_list %}
+    <li>
+        <!-- a는 anchor href,target 등과 같이 사용됨
+         href : hypertext reference 약자 , 연결할 주소를 지정하는 속성임 -->
+        <a href="/polls/{{question.id}}/">
+            {{question.question_text}}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<!-- 객체의 내용이 없는 경우 아래 문장을 출력함 -->
+<p>
+    <!-- 출력 -->
+    No polls are available.
+</p>
+{% endif %}

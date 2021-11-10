@@ -1,0 +1,31 @@
+
+3. Model 만들기
+	1) 테이블 정의(polls/models.py)
+	2) admin 사이트에 위 테이블을 반영(..../admin.py)
+		테이블을 새로 만들때마다 적용시키려면 admin 에도 같이 반형해 줘야 됨
+	3) python manage.py makemigrations (polls/migrations 디렉토리 아래로 Models.py 에서 작성한 테이블을 실제 적용시킬 테이블 데이터로 생성)
+	   python manage.py migrate	(위에서 만든 데이터를 적용)
+
+4. URLconf 코딩
+	1)  (mysite/urls.py) 에 경로를 추가
+	path('polls/', views.index, name='index')
+		다만 mysite는 최상위 urlpattern 이고 계층적으로 분리를 위해 include 를 사용함
+		path('polls/', include('polls.urls'))
+	2) 계층 분리된 app 내부에 urls.py 를 생성하고 패턴 매칭을함 (view 는 추후 작성함...)
+		app_name = 'polls'
+		urlpatterns = [
+		    path('', views.index, name='index'),
+		    path('<int:question_id>/', views.detail, name='detail'),
+		    path('<int:question_id>/results/', views.results, name='results'),
+		    path('<int:question_id>/vote/', views.vote, name='vote'),
+		]
+	매개변수는 다음과 같음
+		route : URL 패턴을 표현
+		view : 매칭됬을 때 호출될 뷰 
+		kwargs : URL 스트링(패턴)에서 추가적인 인자를 뷰 함수에 전달할 경우 파이썬 타입으로 인자를 정의
+		name : 각 UL 패턴별로 이름을 붙여줌(템플릿 파일에서 사용)
+
+	3) view 작성하기
+		polls 아래로 templates/polls 디렉토리를 생성하고 html 을 생성 및 작성
+		views.py 에서 코드 작성
+		

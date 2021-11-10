@@ -1,0 +1,33 @@
+1. 장고 설치 pip install django
+2. 뼈대 만들기 mysite 와 polls 로 구성된 디렉토리 생성 및 어플리케이션 셋팅
+	mysite 는 프로젝트 관련 파일이 들어있음
+	polls 는 어플리케이션 관련 파일들
+	migrations 는 데이터베이스 관련 파일들 ...
+	templates , static , logs 가 추가될 예정
+	DB는 SQLite3
+
+	1) 프로젝트 셋팅 파일
+	django-admin startproject my site
+	move site ch3 (최상이 폴더 이름을 변경, 하위 디렉토리와의 혼란을 막기 위해 변경)
+	
+	2) app 파일
+	ch ch3
+	python manage.py startapp polls
+
+	3) 프로젝트 셋팅 파일 변경하기(settings.py)
+	ALLOWED_HOSTS = ... ????????
+	INSTALLED_APPS 최 하단에 polls.apps.PollsConfig 추가
+	
+	4) TIME_ZONE 을 'UTC'(세계표준시) -> 'Asia/Seoul' 로 변경
+
+	5) ch3 에서 python manage.py migrate 로 데이터베이스를 반영 
+	(db.sqlsite3 파일이 생성됨)
+
+	6) python manage.py runserver 0.0.0.0:8000 으로 테스트 가능
+		0.0.0.0 은 실행중인 서버의 IP  주소가 무엇으로 설정되어 있더라도 모든 웹 접속 요청을 받겠다는 의미
+	
+	7) 위에서 켯으면 ip/port 로 접속가능 admin 은 ip:port/admin
+
+	8) admin 의 id pw 생성하기
+		python manage.py createsuperuser
+		cha 에 1234 로 생성해둠
